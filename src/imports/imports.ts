@@ -1,7 +1,8 @@
 import { Application, Router } from "https://deno.land/x/oak@v17.1.3/mod.ts";
 import { Client } from "https://deno.land/x/mysql@v2.12.1/mod.ts";
 
-import { hash, verify } from "jsr:@felix/argon2";
+//import { hash, verify } from "jsr:@felix/argon2";
+import { compare, hash } from "https://deno.land/x/bcrypt@v0.4.1/mod.ts";
 import {
     create,
     getNumericDate,
@@ -11,6 +12,6 @@ import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
 
 export { Application, Router };
 export { Client };
-export { hash, verify };
+export { compare, hash };
 export { create, getNumericDate, verify1 };
 export { oakCors };

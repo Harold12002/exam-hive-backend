@@ -1,4 +1,4 @@
-import { create, hash, verify, verify1 } from "../imports/imports.ts";
+import { compare, create, hash, verify1 } from "../imports/imports.ts";
 
 //function to hash password
 export async function hashPassword(password: string) {
@@ -57,7 +57,7 @@ export async function comparePassword(
     password: string,
     hashedPassword: string,
 ) {
-    return await verify(hashedPassword, password);
+    return await compare(password, hashedPassword);
 }
 //function to generate reset jwt
 export async function generateResetToken(username: string) {

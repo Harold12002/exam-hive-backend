@@ -122,7 +122,7 @@ export class UserControllers {
                 user.password,
             );
             if (!isPasswordValid) {
-                ctx.reponse.status = 401;
+                ctx.response.status = 401;
                 ctx.response.body = { error: "Invalid Credentials" };
                 return;
             }
