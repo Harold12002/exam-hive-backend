@@ -38,7 +38,7 @@ router.get(
     authMiddleware,
     scienceControllers.randomScienceQuestions,
 );
-router.get("/sci-test1", authMiddleware, scienceControllers.testOne);
+router.get("/sci-test1", scienceControllers.testOne);
 router.get("/sci-test2", authMiddleware, scienceControllers.testTwo);
 router.get("/sci-test3", authMiddleware, scienceControllers.testThree);
 router.get("/sci-test4", authMiddleware, scienceControllers.testFour);

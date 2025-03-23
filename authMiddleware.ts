@@ -7,7 +7,7 @@ export async function authMiddleware(ctx: any, next: Function) {
     //check if header exists
     if (!authHeader) {
         ctx.response.status = 401;
-        ctx.response.body = { error: "Authorixation header is missing" };
+        ctx.response.body = { error: "Authorization header is missing" };
         return;
     }
 
