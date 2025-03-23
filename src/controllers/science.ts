@@ -118,7 +118,7 @@ export class Science {
         } catch (error) {
             console.error(error);
             ctx.response.status = 500;
-            ctx.response.body = { message: "Internal Server Error" };
+            ctx.response.body = { message: "Internal Server Error", error };
         }
     }
     //test 2 26-50
