@@ -170,7 +170,7 @@ export class QuestionsControllers {
             });
 
             const passMark = 50;
-            const totalQsns = 20;
+            const totalQsns = 25;
             const percentage = parseFloat(
                 ((score / totalQsns) * 100).toFixed(1),
             );

@@ -9,6 +9,8 @@ import { UserControllers } from "../controllers/userRegistration.ts";
 import { Router } from "../imports/imports.ts";
 import { authMiddleware } from "../../authMiddleware.ts";
 import { roleMiddleware } from "../helpers/userHelpers.ts";
+import { UserStatisticsControllers } from "../controllers/userStatistics.ts";
+import { ExamStats } from "../controllers/examStats.ts";
 
 const userControllers = new UserControllers();
 const questionControllers = new QuestionsControllers();
@@ -18,6 +20,8 @@ const biologyControllers = new Biology();
 const chemistryControllers = new Chemistry();
 const physicsControllers = new Physics();
 const computerControllers = new Computer();
+const userStatsControllers = new UserStatisticsControllers();
+const examStatsControllers = new ExamStats();
 const router = new Router();
 
 //User routes
@@ -38,7 +42,7 @@ router.get(
     authMiddleware,
     scienceControllers.randomScienceQuestions,
 );
-router.get("/sci-test1", scienceControllers.testOne);
+router.get("/sci-test1", authMiddleware, scienceControllers.testOne);
 router.get("/sci-test2", authMiddleware, scienceControllers.testTwo);
 router.get("/sci-test3", authMiddleware, scienceControllers.testThree);
 router.get("/sci-test4", authMiddleware, scienceControllers.testFour);
@@ -132,13 +136,26 @@ router.get(
 
 //questions routes
 router.get("/quick-test", authMiddleware, questionControllers.handleTest);
-router.get("/all-questions", questionControllers.getAllQuestions);
+router.get(
+    "/all-questions",
+    authMiddleware,
+    roleMiddleware("admin"),
+    questionControllers.getAllQuestions,
+);
 router.post("/answers", authMiddleware, questionControllers.handleAnswers);
 router.post(
     "/add-questions",
     authMiddleware,
-    roleMiddleware("Admin"),
+    roleMiddleware("admin"),
     questionControllers.addQuestions,
 );
+
+//examstats controller
+router.post("/record-stats", examStatsControllers.recordExamStats);
+
+//statistics routes
+router.post("/stats/record", userStatsControllers.recordExamStats);
+router.get("/stats/:user_id/:subject", userStatsControllers.getUserStats);
+router.get("/stats/:user_id", userStatsControllers.getAllStats);
 
 export default router;

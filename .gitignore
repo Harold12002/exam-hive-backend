@@ -1,3 +1,0 @@
-touch .gitignore
-echo "node-modules/" >> .gitignore
-echo ".env" >> .gitignore
